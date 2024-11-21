@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Data
-@AllArgsConstructor
 public class Student {
 
     @NotEmpty(message = "Error: id is empty!")
@@ -30,4 +29,32 @@ public class Student {
     private LocalDate startStudy;
     @JsonIgnore
     private ArrayList<Courses> courses;
+
+    public Student(){
+
+    }
+    public Student(String id ,String name , String gender , String major, double gpa , LocalDate startStudy ,ArrayList<Courses> courses){
+
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.major = major;
+        calculateGPA();
+        this.startStudy = startStudy;
+        this.courses = courses;
+    }
+    public void calculateGPA(){
+        double totalCoursesPoint = 0;
+        double totalCoursesHours =0 ;
+        for(Courses c : courses){
+            for (int i = 0 ; i < c.getGrades().size(); i++){
+                if(c.getGrades().get(i).getStudent().getId().equalsIgnoreCase(this.id)){
+                    totalCoursesPoint += (c.getGrades().get(i).getCoursePoint()*c.getHours());
+                }
+                totalCoursesHours += c.getHours();
+            }
+        }
+        this.gpa = totalCoursesPoint/totalCoursesHours;
+    }
+
 }

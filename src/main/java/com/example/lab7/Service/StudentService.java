@@ -35,7 +35,7 @@ public class StudentService {
         ArrayList<Courses> updatedCourses = new ArrayList<>();
         for (Courses c : courses){
 
-            c.getGrades().add(gradesService.addGreade(new Grades( "GR"+counter,0,"NotFinished",c,student,null)));
+            c.getGrades().add(gradesService.addGreade(new Grades( "GR"+counter,0 , 0,"NotFinished",c,student,null)));
             counter++;
             updatedCourses.add(c);
         }
