@@ -18,5 +18,5 @@ public class GradeScoreService {
     public void addGradesScore(GradeScore gradeScore){
         gradeScores.add(gradeScore);
     }
-    
+
 }
