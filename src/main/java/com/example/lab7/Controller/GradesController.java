@@ -32,17 +32,17 @@ public class GradesController {
 
     }
 
-    @PutMapping("/update/{studentId}/{coureseId}")
-    public ResponseEntity updateGrade(@PathVariable String studentId , @PathVariable String coureseId ,@RequestBody @Valid Grades grade , Errors errors){
+    @PutMapping("/update/{gradeId}")
+    public ResponseEntity updateGrade(@PathVariable String gradeId ,@RequestBody @Valid Grades grade , Errors errors){
         if(errors.hasErrors())return ResponseEntity.status(400).body(new ApiResponse(errors.getFieldError().getDefaultMessage()));
 
-        if(gradesService.updateGrade(studentId,coureseId,grade))return ResponseEntity.ok(new ApiResponse("grade is updated"));
+        if(gradesService.updateGrade(gradeId,grade))return ResponseEntity.ok(new ApiResponse("grade is updated"));
         else return ResponseEntity.status(400).body(new ApiResponse("Grade is not found"));
     }
     @DeleteMapping("/delete/{studentId}/{coureseId}")
-    public ResponseEntity deleteGrade(@PathVariable String studentId , @PathVariable String coureseId ){
+    public ResponseEntity deleteGrade(@PathVariable String gradeId  ){
 
-        if(gradesService.deleteGrade(studentId,coureseId))return ResponseEntity.ok(new ApiResponse("grade is deleted"));
+        if(gradesService.deleteGrade(gradeId))return ResponseEntity.ok(new ApiResponse("grade is deleted"));
         else return ResponseEntity.status(400).body(new ApiResponse("Grade is not found"));
     }
 }

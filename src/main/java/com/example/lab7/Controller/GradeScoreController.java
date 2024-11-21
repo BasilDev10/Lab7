@@ -37,17 +37,17 @@ public class GradeScoreController {
 
     }
 
-//    @PutMapping("/update/{studentId}/{coureseId}")
-//    public ResponseEntity updateGradeScore(@PathVariable String studentId , @PathVariable String coureseId ,@RequestBody @Valid Grades grade , Errors errors){
-//        if(errors.hasErrors())return ResponseEntity.status(400).body(new ApiResponse(errors.getFieldError().getDefaultMessage()));
-//
-//        if(gradeScoreService.updateGradeScore(studentId,coureseId,grade))return ResponseEntity.ok(new ApiResponse("grade score is updated"));
-//        else return ResponseEntity.status(400).body(new ApiResponse("Grade is not found"));
-//    }
-//    @DeleteMapping("/delete/{studentId}/{coureseId}")
-//    public ResponseEntity deleteGradeScore(@PathVariable String studentId , @PathVariable String coureseId ){
-//
-//        if(gradeScoreService.deleteGradeScore(studentId,coureseId))return ResponseEntity.ok(new ApiResponse("grade is deleted"));
-//        else return ResponseEntity.status(400).body(new ApiResponse("Grade is not found"));
-//    }
+    @PutMapping("/update/{gradeScoreId}/{typeGrade}")
+    public ResponseEntity updateGradeScore(@PathVariable String gradeScoreId  ,@RequestBody @Valid GradeScore gradeScore , Errors errors){
+        if(errors.hasErrors())return ResponseEntity.status(400).body(new ApiResponse(errors.getFieldError().getDefaultMessage()));
+
+        if(gradeScoreService.updateGradeScore(gradeScoreId ,gradeScore))return ResponseEntity.ok(new ApiResponse("grade score is updated"));
+        else return ResponseEntity.status(400).body(new ApiResponse("Grade is not found"));
+    }
+    @DeleteMapping("/delete/{studentId}/{coureseId}")
+    public ResponseEntity deleteGradeScore(@PathVariable String gradeScoreId ){
+
+        if(gradeScoreService.deleteGradeScore(gradeScoreId))return ResponseEntity.ok(new ApiResponse("grade score is deleted"));
+        else return ResponseEntity.status(400).body(new ApiResponse("Grade core is not found"));
+    }
 }

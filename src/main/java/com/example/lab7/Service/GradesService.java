@@ -36,20 +36,20 @@ public class GradesService {
 //        return grade;
 //    }
 
-    public boolean updateGrade(String studentId , String coureseId , Grades grade){
+    public boolean updateGrade(String gradeId  , Grades grade){
 
         for (int i = 0 ; i < grades.size(); i++){
-            if (grades.get(i).getStudent().getId().equalsIgnoreCase(studentId) && grades.get(i).getCourses().getId().equalsIgnoreCase(coureseId)){
+            if (grades.get(i).getId().equalsIgnoreCase(gradeId)){
                 grades.set(i,grade);
                 return true;
             }
         }
         return false;
     }
-    public boolean deleteGrade(String studentId , String coureseId ){
+    public boolean deleteGrade(String gradeId){
 
         for (int i = 0 ; i < grades.size(); i++){
-            if (grades.get(i).getStudent().getId().equalsIgnoreCase(studentId) && grades.get(i).getCourses().getId().equalsIgnoreCase(coureseId)){
+            if (grades.get(i).getId().equalsIgnoreCase(gradeId)){
                 grades.remove(i);
                 return true;
             }
